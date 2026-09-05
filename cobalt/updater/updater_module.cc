@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -100,7 +100,7 @@ void UpdaterModule::CreateInstance(
   if (updater_module_) {
     LOG(WARNING)
         << "UpdaterModule is already created. Use UpdaterModule::GetInstance() "
-           "to get the instance.";
+            "to get the instance.";
     return;
   }
   updater_module_ =
@@ -228,6 +228,7 @@ void UpdaterModule::Resume() {
 
 void UpdaterModule::Initialize(
     std::unique_ptr<network::PendingSharedURLLoaderFactory> pending_factory) {
+  return; // Vô hiệu hóa chức năng update
   DCHECK(updater_thread_->task_runner()->RunsTasksInCurrentSequence());
   LOG(INFO) << "UpdaterModule::Initialize";
 
@@ -306,6 +307,7 @@ void UpdaterModule::MarkSuccessfulImpl() {
 }
 
 void UpdaterModule::Update() {
+  return; // Vô hiệu hóa chức năng update
   DCHECK(updater_thread_->task_runner()->RunsTasksInCurrentSequence());
   LOG(INFO) << "UpdaterModule::Update";
 
@@ -344,7 +346,7 @@ void UpdaterModule::Update() {
             component.app_id = ids[0];
             component.version = manifest_version;
             component.pk_hash.assign(std::begin(kCobaltPublicKeyHash),
-                                     std::end(kCobaltPublicKeyHash));
+                                   std::end(kCobaltPublicKeyHash));
             component.requires_network_encryption = true;
 #if !BUILDFLAG(COBALT_IS_RELEASE_BUILD)
             if (skip_verify_public_key_hash) {
@@ -422,9 +424,7 @@ std::string UpdaterModule::GetUpdaterStatus() const {
 }
 
 void UpdaterModule::RunUpdateCheck() {
-  updater_thread_->task_runner()->PostTask(
-      FROM_HERE,
-      base::BindOnce(&UpdaterModule::Update, base::Unretained(this)));
+  return; // Vô hiệu hóa chức năng update
 }
 
 void UpdaterModule::ResetInstallations() {
