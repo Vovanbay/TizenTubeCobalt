@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//      http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -92,37 +92,37 @@ class UpdaterModule {
   UpdaterModule(const UpdaterModule&) = delete;
   UpdaterModule& operator=(const UpdaterModule&) = delete;
 
-  void Suspend();
-  void Resume();
+  void Suspend() {} // Vô hiệu hóa
+  void Resume() {} // Vô hiệu hóa
 
-  std::string GetUpdaterChannel() const;
-  void SetUpdaterChannel(const std::string& updater_channel);
+  std::string GetUpdaterChannel() const { return ""; }
+  void SetUpdaterChannel(const std::string& updater_channel) {}
 
-  void CompareAndSwapForcedUpdate(int old_value, int new_value);
+  void CompareAndSwapForcedUpdate(int old_value, int new_value) {}
 
-  void RunUpdateCheck();
+  void RunUpdateCheck() {}
 
-  std::string GetUpdaterStatus() const;
+  std::string GetUpdaterStatus() const { return ""; }
 
-  void ResetInstallations();
+  void ResetInstallations() {}
 
-  int GetInstallationIndex() const;
+  int GetInstallationIndex() const { return -1; }
 
-  void SetMinFreeSpaceBytes(uint64_t bytes);
+  void SetMinFreeSpaceBytes(uint64_t bytes) {}
 
-  bool GetUseCompressedUpdates() const;
-  void SetUseCompressedUpdates(bool use_compressed_updates);
+  bool GetUseCompressedUpdates() const { return false; }
+  void SetUseCompressedUpdates(bool use_compressed_updates) {}
 
-  bool GetAllowSelfSignedPackages() const;
-  void SetAllowSelfSignedPackages(bool allow_self_signed_packages);
+  bool GetAllowSelfSignedPackages() const { return false; }
+  void SetAllowSelfSignedPackages(bool allow_self_signed_packages) {}
 
-  std::string GetUpdateServerUrl() const;
-  void SetUpdateServerUrl(const std::string& update_server_url);
+  std::string GetUpdateServerUrl() const { return ""; }
+  void SetUpdateServerUrl(const std::string& update_server_url) {}
 
-  bool GetRequireNetworkEncryption() const;
-  void SetRequireNetworkEncryption(bool require_network_encryption);
+  bool GetRequireNetworkEncryption() const { return true; }
+  void SetRequireNetworkEncryption(bool require_network_encryption) {}
 
-  void MarkSuccessful();
+  void MarkSuccessful() {}
 
  private:
   // Private constructor and destructor to enforce singleton pattern.
